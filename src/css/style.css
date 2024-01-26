@@ -94,6 +94,10 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
+
+.hidden {
+  display: none;
+}
 /* End utility classes */
 
 /* Cart icon styles */
