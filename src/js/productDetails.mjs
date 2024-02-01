@@ -7,11 +7,16 @@ let product = {};
 export default async function productDetails(productID, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     product = await findProductById(productID);
+    console.log(product)
     // once we have the product details we can render out the HTML
     const element = document.querySelector(selector);
-    element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
-    // add a listener to Add to Cart button
-    document.querySelector("#addToCart").addEventListener("click", addToCart);
+    if(product){
+        element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+        // add a listener to Add to Cart button
+        document.querySelector("#addToCart").addEventListener("click", addToCart);
+    }else{
+        element.insertAdjacentHTML("afterBegin", "<h2>Sorry, we couldn't find this product!</h2>")
+    }
 }
 
 function addToCart() {
