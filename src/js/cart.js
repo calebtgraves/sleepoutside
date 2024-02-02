@@ -7,11 +7,13 @@ function renderCartContents() {
     // show cart total if more than 0
     if (htmlItems.length > 0) {
       document.querySelector("#total-label").classList.remove("hidden");
+      let retailTotal = 0
       let total = 0;
       cartItems.map((item) => {
         total += item.FinalPrice;
+        retailTotal += item.SuggestedRetailPrice
       });
-      document.querySelector("#cart-total").innerHTML = `$${total.toFixed(2)}`;
+      document.querySelector("#cart-total").innerHTML = `<span class="product-card__retail-price">${retailTotal>total?"$"+retailTotal.toFixed(2):""}</span> $${total.toFixed(2)}`;
     }
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
   } else {
@@ -32,11 +34,8 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
-<<<<<<< Updated upstream
   <p class="cart-card__price">$${item.FinalPrice}</p>
-=======
   <p class="cart-card__price"><span class="product-card__retail-price">$${item.SuggestedRetailPrice.toFixed(2)}</span> $${item.FinalPrice}</p>
->>>>>>> Stashed changes
 </li>`;
 
   return newItem;
