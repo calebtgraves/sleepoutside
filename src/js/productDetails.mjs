@@ -7,7 +7,6 @@ let product = {};
 export default async function productDetails(productID, selector) {
     // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     product = await findProductById(productID);
-    console.log(product)
     // once we have the product details we can render out the HTML
     const element = document.querySelector(selector);
     if(product){
@@ -27,7 +26,7 @@ function productDetailsTemplate(p) {
     return `<h3 id="productName">${p.Brand.Name}</h3>
         <h2 class="divider" id="productNameWithoutBrand">${p.NameWithoutBrand}</h2>
         <img id="productImage" class="divider" src="${p.Image}" alt="" />
-        <p class="product-card__price" id="productFinalPrice">$${p.FinalPrice}</p>
+        <p class="product-card__price" id="productFinalPrice"><span class="product-card__retail-price">${p.SuggestedRetailPrice>p.ListPrice?"$"+p.SuggestedRetailPrice.toFixed(2):""}</span> $${p.FinalPrice}</p>
         <p class="product__color" id="productColorName">${p.Colors[0].ColorName}</p>
         <p class="product__description" id="productDescriptionHtmlSimple">${p.DescriptionHtmlSimple}</p>
         <div class="product-detail__add">
