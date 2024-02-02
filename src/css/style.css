@@ -129,7 +129,7 @@ button {
 .product-list {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
   list-style-type: none;
   padding: 0;
 }
@@ -149,6 +149,10 @@ button {
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
+}
+.product-card__retail-price{
+  text-decoration:line-through;
+  color:red;
 }
 
 .card__brand {
