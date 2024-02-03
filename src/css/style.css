@@ -30,6 +30,10 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+.alert-list p{
+  margin:0;
+  padding:1rem;
+}
 .logo {
   line-height: 60px;
   width: 245px;
