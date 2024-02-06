@@ -28,8 +28,5 @@ function productDetailsTemplate(p) {
         <img id="productImage" class="divider" src="${p.Image}" alt="" />
         <p class="product-card__price" id="productFinalPrice"><span class="product-card__retail-price">${p.SuggestedRetailPrice>p.ListPrice?"$"+p.SuggestedRetailPrice.toFixed(2):""}</span> $${p.FinalPrice}</p>
         <p class="product__color" id="productColorName">${p.Colors[0].ColorName}</p>
-        <p class="product__description" id="productDescriptionHtmlSimple">${p.DescriptionHtmlSimple}</p>
-        <div class="product-detail__add">
-            <button id="addToCart" data-id="">Add to Cart</button>
-    </div>`;
+        <p class="product__description" id="productDescriptionHtmlSimple">${p.DescriptionHtmlSimple}</p>`;
 }
