@@ -1,5 +1,6 @@
 import { getParam } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
+import { renderHeaderFooter } from "./utils.mjs";
 
 const productId = getParam("product");
 productDetails(productId, ".product-detail");
@@ -13,3 +14,5 @@ addToCartButton.addEventListener("click", () => {
     cartIcon.classList.remove("shakeAnimation");
   }, 4000);
 });
+
+renderHeaderFooter();
