@@ -45,7 +45,6 @@ export function getCartCount() {
 export function renderHeaderFooter() {
   new MainHeader({
     target: document.querySelector("#main-header"),
-    //props: { cartCount: 5 }
   });
   new MainFooter({
     target: document.querySelector("#main-footer")
