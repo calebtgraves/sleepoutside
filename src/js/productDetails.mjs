@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
+import { setLocalStorage, getCartCount } from "./utils.mjs";
 
 let product = {};
 
@@ -20,6 +21,7 @@ export default async function productDetails(productID, selector) {
 
 function addToCart() {
     setLocalStorage("so-cart", product);
+    cartCount.set(getCartCount());
 }
 
 function productDetailsTemplate(p) {
