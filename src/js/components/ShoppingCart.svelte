@@ -1,20 +1,15 @@
 <script>
-    import { getData } from "../productData.mjs";
-    import CartItem from "./CartItem.svelte";
-    
-    // this is how we make a prop in svelte
-    export let category;
-    // if you are looking at this thinking that's strange to just stop with a promise
-    // you would be right.  This will make more sense in a bit...stay tuned.
-    let promise = getData(category);
+import CartItem from "./CartItem.svelte";
+
+export let cartItems
 </script>
-    
-    {#await promise}
-        Loading
-    {:then products}
-    <ul class="product-list">
-    {#each products as product}
-        <CartItem product={product}/>
-    {/each}
-    </ul>
-    {/await}
+
+{#if cartItems}
+<ul class="product-list">
+{#each cartItems as item}
+    <CartItem item={item}/>
+{/each}
+</ul>
+{:else}
+<p>Cart is empty</p>
+{/if}

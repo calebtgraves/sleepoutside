@@ -8,7 +8,9 @@
 </div>
 <div class="cart">
     {#if $cartCount}
-    <sup class="cart-count">{$cartCount}</sup>
+    <div class="cart-count-indicator">
+        <sup class="cart-count">{$cartCount}</sup>
+    </div>
     {/if}
 <a href="../../cart/index.html">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
