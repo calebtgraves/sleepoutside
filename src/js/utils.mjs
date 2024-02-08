@@ -1,5 +1,6 @@
 import MainFooter from "./components/MainFooter.svelte" ;
 import MainHeader from "./components/MainHeader.svelte" ;
+import { cartCount, cartItems, totalFinalPrice, totalRetailPrice } from "./stores.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -45,9 +46,40 @@ export function getCartCount() {
 export function renderHeaderFooter() {
   new MainHeader({
     target: document.querySelector("#main-header"),
-    //props: { cartCount: 5 }
   });
   new MainFooter({
     target: document.querySelector("#main-footer")
   });
+}
+
+export function updateCart(){
+  let retailTotal = 0;
+  let finalTotal = 0;
+  let items = getLocalStorage('so-cart')
+  if(items){
+    let revisedCartItems = [];
+    let cartItemTotals = {}
+    items.forEach((item)=>{
+      retailTotal += item.SuggestedRetailPrice
+      finalTotal += item.FinalPrice
+      if(item.Id in cartItemTotals){
+        cartItemTotals[item.Id].push(item)
+      }else{
+        cartItemTotals[item.Id] = [item]
+      }
+    })
+    for(let item in cartItemTotals){
+      cartItemTotals[item][0].quantity = cartItemTotals[item].length
+      revisedCartItems.push(cartItemTotals[item][0])
+    }
+    totalFinalPrice.set(finalTotal)
+    totalRetailPrice.set(retailTotal)
+    cartItems.set(revisedCartItems)
+  }
+}
+
+export function addToCart(product) {
+  setLocalStorage("so-cart", product);
+  cartCount.set(getCartCount());
+  updateCart()
 }
