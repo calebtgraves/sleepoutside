@@ -1,6 +1,6 @@
 import { findProductById } from "./productData.mjs";
-import { cartCount } from "./stores.mjs";
-import { setLocalStorage, getCartCount } from "./utils.mjs";
+import { cartCount, cartItems } from "./stores.mjs";
+import { addToCart } from "./utils.mjs";
 
 let product = {};
 
@@ -13,15 +13,10 @@ export default async function productDetails(productID, selector) {
     if(product){
         element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
         // add a listener to Add to Cart button
-        document.querySelector("#addToCart").addEventListener("click", addToCart);
+        document.querySelector("#addToCart").addEventListener("click", ()=>{addToCart(product)});
     }else{
         element.insertAdjacentHTML("afterBegin", "<h2>Sorry, we couldn't find this product!</h2>")
     }
-}
-
-function addToCart() {
-    setLocalStorage("so-cart", product);
-    cartCount.set(getCartCount());
 }
 
 function productDetailsTemplate(p) {
