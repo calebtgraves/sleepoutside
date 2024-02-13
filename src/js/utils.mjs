@@ -83,3 +83,11 @@ export function addToCart(product) {
   cartCount.set(getCartCount());
   updateCart()
 }
+
+export function removeFromCart(product) {
+  let cart = getLocalStorage("so-cart");
+  let newCart = cart.filter((item) => item.Id !== product.Id);
+  localStorage.setItem("so-cart", JSON.stringify(newCart));
+  cartCount.set(getCartCount());
+  updateCart()
+}
