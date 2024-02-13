@@ -1,5 +1,5 @@
 <script> 
-    import { addToCart } from "../utils.mjs"
+    import { addToCart, removeFromCart } from "../utils.mjs"
 
     export let quantity
     export let item;
@@ -22,6 +22,7 @@
             <button on:click={()=>{addToCart(item)}}>╱╲</button>
             <button>╲╱</button>
         </div>
+        <button id="remove-button" on:click={()=>{removeFromCart(item)}}>X</button>
     </div>
     <p class="cart-card__price"><span class="product-card__retail-price">${(item.SuggestedRetailPrice*item.quantity).toFixed(2)}</span><br/> ${(item.FinalPrice*item.quantity).toFixed(2)}</p>
   </li>
