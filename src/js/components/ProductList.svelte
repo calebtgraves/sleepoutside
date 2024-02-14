@@ -66,6 +66,8 @@ handleSortBy()
     }
     #sort h3{
         margin:0;
-        margin-right:1rem;
+    }
+    #sort select{
+        margin-left:.5rem;
     }
 </style>

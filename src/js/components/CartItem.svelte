@@ -20,9 +20,9 @@
         <p class="cart-card__quantity">qty: {quantity}</p>
         <div class="cart-card__quantity-buttons">
             <button on:click={()=>{addToCart(item)}}>╱╲</button>
-            <button>╲╱</button>
+            <button on:click={()=>{removeFromCart(item,false)}}>╲╱</button>
         </div>
-        <button id="remove-button" on:click={()=>{removeFromCart(item)}}>X</button>
+        <button id="remove-button" on:click={()=>{removeFromCart(item)}}>✕</button>
     </div>
     <p class="cart-card__price"><span class="product-card__retail-price">${(item.SuggestedRetailPrice*item.quantity).toFixed(2)}</span><br/> ${(item.FinalPrice*item.quantity).toFixed(2)}</p>
   </li>
@@ -37,6 +37,7 @@
     .cart-card__quantity-container{
         display:flex;
         align-items: center;
+        position:relative;
     }
     .cart-card__quantity-buttons{
         display:flex;
@@ -58,5 +59,15 @@
     }
     .cart-card__quantity-buttons button:active{
         filter:brightness(50%)
+    }
+    #remove-button{
+        padding:0;
+        font-size:1rem;
+        height:1.2rem;
+        width:1.2rem;
+        line-height: 1rem;
+        position:absolute;
+        top:0;
+        right:0;
     }
 </style>

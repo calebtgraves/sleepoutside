@@ -84,9 +84,21 @@ export function addToCart(product) {
   updateCart()
 }
 
-export function removeFromCart(product) {
+export function removeFromCart(product,all=true) {
   let cart = getLocalStorage("so-cart");
-  let newCart = cart.filter((item) => item.Id !== product.Id);
+  let newCart = []
+  if(all){
+    newCart = cart.filter((item) => item.Id !== product.Id);
+  }else{
+    let itemRemoved = false
+    cart.forEach((item)=>{
+      if(item.Id == product.Id && !itemRemoved){
+        itemRemoved = true
+      }else{
+        newCart.push(item)
+      }
+    })
+  }
   localStorage.setItem("so-cart", JSON.stringify(newCart));
   cartCount.set(getCartCount());
   updateCart()
