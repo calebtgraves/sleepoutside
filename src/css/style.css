@@ -30,9 +30,9 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
-.alert-list p{
-  margin:0;
-  padding:1rem;
+.alert-list p {
+  margin: 0;
+  padding: 1rem;
 }
 .logo {
   line-height: 60px;
@@ -111,24 +111,24 @@ button {
   text-align: center;
 }
 
-.cart-count-indicator{
+.cart-count-indicator {
   user-select: none;
   cursor: pointer;
-  position:absolute;
-  top:10px;
-  right:0;
-  background-color:#f0a868;
-  height:1.2rem;
-  width:1.2rem;
-  display:flex;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: #f0a868;
+  height: 1.2rem;
+  width: 1.2rem;
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
 }
-.cart-count{
-  margin-top:.1rem;
-  font-size: .8rem;
-  text-align:center;
+.cart-count {
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .cart svg {
@@ -197,9 +197,9 @@ button {
 .product-card p {
   margin: 0.5em 0;
 }
-.product-card__retail-price{
-  text-decoration:line-through;
-  color:red;
+.product-card__retail-price {
+  text-decoration: line-through;
+  color: red;
 }
 
 .card__brand {
@@ -254,8 +254,46 @@ button {
   grid-column: 3;
 }
 
-#addToCart:active{
-  filter:brightness(70%);
+#addToCart:active {
+  filter: brightness(70%);
+}
+
+#tents {
+  background-image: url("https://byui-cit.github.io/wdd330/images/category-icons/noun_Tent_3544767.svg");
+}
+#backpacks {
+  background-image: url("https://byui-cit.github.io/wdd330/images/category-icons/noun_carrier%20bag_3544771.svg");
+}
+#sleeping-bags {
+  background-image: url("https://byui-cit.github.io/wdd330/images/category-icons/noun_Sleeping%20Bag_3544775.svg");
+}
+#hammocks {
+  background-image: url("https://byui-cit.github.io/wdd330/images/category-icons/noun_Hammock_791143.svg");
+}
+.product-box {
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100px;
+  text-align: center;
+  margin: 2rem;
+  font-weight: bold;
+}
+.product-box p {
+  margin: 0;
+  color: black;
+  text-decoration: none;
+}
+.product-boxes a {
+  text-decoration: none;
+}
+.product-boxes {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 @media screen and (min-width: 500px) {
