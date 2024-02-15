@@ -32,7 +32,7 @@ handleSortBy()
 </script>
 
 <div id="products-header">
-    <h2>Top products: {category}</h2>
+    <h2>Top products: {category[0].toUpperCase()+category.slice(1).replace("-"," ")}</h2>
     <div id="sort">
         <h3>Sort By:</h3>
         <select bind:value={sortBy} on:change={handleSortBy}>
