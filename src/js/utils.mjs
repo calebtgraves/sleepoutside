@@ -103,3 +103,7 @@ export function removeFromCart(product,all=true) {
   cartCount.set(getCartCount());
   updateCart()
 }
+
+export function redirect(url) {
+  window.location = url;
+}
