@@ -1,5 +1,9 @@
 <script>
-    import { getLocalStorage } from "../utils.mjs";
+    import { getLocalStorage, updateCart } from "../utils.mjs";
+    import { cartItems } from "../stores.mjs";
+    import { checkout } from "../externalServices.mjs";
+
+    updateCart();
 
     let itemCount = 0;
     let subtotal = 0;
@@ -25,11 +29,51 @@
         tax = 0.06 * subtotal;
         orderTotal = subtotal + shipping + tax;
     }
+    
+    // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+    function packageItems() {
+        let packagedItems = [];
+        $cartItems.forEach( (item) => {
+            let packagedItem = {
+                id: item.Id,
+                name: item.Name,
+                price: item.FinalPrice,
+                quantity: item.quantity
+            };
+            packagedItems.push(packagedItem);
+        });
+        return packagedItems;
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        
+        // build the data object from the calculated fields, the items in the cart, and the information entered into the form
+        let form = new FormData(this.parentElement);
+        let convertedJSON = {};
+
+        convertedJSON["orderDate"] = new Date();
+        form.forEach( (value, key) => {
+            convertedJSON[key] = value;
+        });
+        convertedJSON["items"] = packageItems();
+        convertedJSON["orderTotal"] = orderTotal.toFixed(2).toString();
+        convertedJSON["shipping"] = shipping;
+        convertedJSON["tax"] = tax.toFixed(2).toString();
+        console.log(convertedJSON);
+
+        // call the checkout method in our externalServices module and send it our data object.
+        // checkout(convertedJSON);
+        let data = await checkout(convertedJSON);
+        console.log(data)
+    }
+
+    // TODO: fix bad request when not autofilled
 
     init();
 </script>
 
-<form>
+<form action="">
     <fieldset>
         <legend>Shipping</legend>
         <label for="fname">First Name</label>
@@ -48,12 +92,12 @@
         <input name="state" value="California" required>
 
         <label for="zip">Zip</label>
-        <input name="zip" required on:change = { calculateOrderTotal }>
+        <input name="zip" required on:change = {calculateOrderTotal}>
     </fieldset>
     <fieldset>
         <legend>Payment</legend>
         <label for="cardNumber">Card Number</label>
-        <input name="cardNumber" value="8888999922224444" required>
+        <input name="cardNumber" value="1234123412341234" required>
 
         <label for="expiration">Expiration</label>
         <input name="expiration" value="07/55" required>
@@ -80,7 +124,7 @@
             <p>${orderTotal.toFixed(2)}</p>
         </div>
     </fieldset>
-    <button>Place Order</button>
+    <button type="submit" on:click = {handleSubmit}>Place Order</button>
 </form>
 
 <style>

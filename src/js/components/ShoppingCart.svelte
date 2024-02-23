@@ -11,9 +11,9 @@ updateCart()
 <ul class="product-list">
 {#each $cartItems as item}
     <CartItem item={item} quantity={item.quantity}/>
-    <button id="checkout-button" on:click={ () => redirect("/checkout/index.html") }>Checkout</button>
-{/each}
+    {/each}
 </ul>
+<button id="checkout-button" on:click={ () => redirect("/checkout/index.html") }>Checkout</button>
 {:else}
 <p class="empty-cart-indicator">Your cart is empty</p>
 {/if}

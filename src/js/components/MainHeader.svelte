@@ -1,4 +1,3 @@
-
 <script>
     import { cartCount } from "../stores.mjs";
 </script>

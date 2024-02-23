@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { cartCount, cartItems } from "./stores.mjs";
 import { addToCart } from "./utils.mjs";
 const baseURL = import.meta.env.VITE_SERVER_URL;
@@ -24,7 +24,7 @@ function productDetailsTemplate(p) {
     return `<h3 id="productName">${p.Brand.Name}</h3>
         <h2 class="divider" id="productNameWithoutBrand">${p.NameWithoutBrand}</h2>
         <img id="productImage" class="divider" src="${p.Images.PrimaryLarge}" alt="" />
-        <p class="product-card__price" id="productFinalPrice"><span class="product-card__retail-price">${p.SuggestedRetailPrice>p.ListPrice?"$"+p.SuggestedRetailPrice.toFixed(2):""}</span> $${p.FinalPrice}</p>
+        <p class="product-card__price" id="productFinalPrice"><span class="product-card__retail-price">${p.SuggestedRetailPrice > p.ListPrice ? "$" + p.SuggestedRetailPrice.toFixed(2) : ""}</span> $${p.FinalPrice}</p>
         <p class="product__color" id="productColorName">${p.Colors[0].ColorName}</p>
         <p class="product__description" id="productDescriptionHtmlSimple">${p.DescriptionHtmlSimple}</p>`;
 }

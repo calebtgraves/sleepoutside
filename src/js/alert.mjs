@@ -1,6 +1,6 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 
-getData("alerts")
+getProductsByCategory("alerts")
 .then(alerts =>{
     if(alerts){
         const alertList = document.createElement("section");
