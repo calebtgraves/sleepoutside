@@ -23,7 +23,7 @@
     .search-bar {
         display: flex;
         align-items: center;
-        margin: 8px 8px 8px 0;
+        margin:0;
         padding: 1rem;
     }
 
