@@ -1,7 +1,6 @@
 import { findProductById } from "./productData.mjs";
-import { cartCount, cartItems } from "./stores.mjs";
+import ImageCarousel from "./components/ImageCarousel.svelte"
 import { addToCart } from "./utils.mjs";
-const baseURL = import.meta.env.VITE_SERVER_URL;
 
 let product = {};
 
@@ -13,9 +12,14 @@ export default async function productDetails(productID, selector) {
     const element = document.querySelector(selector);
     if(product){
         element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+        new ImageCarousel({
+            target: document.getElementById('productImages'),
+            props: {item: product}
+        })
         // add a listener to Add to Cart button
         document.querySelector("#addToCart").addEventListener("click", ()=>{addToCart(product)});
     }else{
+        document.getElementById("addToCart").style.display = "none";
         element.insertAdjacentHTML("afterBegin", "<h2>Sorry, we couldn't find this product!</h2>")
     }
 }
@@ -23,7 +27,7 @@ export default async function productDetails(productID, selector) {
 function productDetailsTemplate(p) {
     return `<h3 id="productName">${p.Brand.Name}</h3>
         <h2 class="divider" id="productNameWithoutBrand">${p.NameWithoutBrand}</h2>
-        <img id="productImage" class="divider" src="${p.Images.PrimaryLarge}" alt="" />
+        <section id="productImages"></section>
         <p class="product-card__price" id="productFinalPrice"><span class="product-card__retail-price">${p.SuggestedRetailPrice>p.ListPrice?"$"+p.SuggestedRetailPrice.toFixed(2):""}</span> $${p.FinalPrice}</p>
         <p class="product__color" id="productColorName">${p.Colors[0].ColorName}</p>
         <p class="product__description" id="productDescriptionHtmlSimple">${p.DescriptionHtmlSimple}</p>`;
