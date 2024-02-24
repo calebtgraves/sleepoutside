@@ -34,13 +34,15 @@
     }
 
     button {
-        padding: 0.25rem 0.5rem;
+        padding-left:1rem;
+        padding-right:1rem;
         border: none;
         border-radius: 0.25rem;
         margin-left: 0.25rem;
         margin-bottom: 0.05rem;
         color: white;
         background-color: #454d32;
+        font-size:1rem;
     }
 
     button:hover {
