@@ -1,9 +1,5 @@
 <script>
-    import { searchItems } from '../stores.mjs';
-    const baseURL = import.meta.env.VITE_SERVER_URL;
     let searchTerm = '';
-    let searchResults = []; // This will hold the fetched results
-    let filteredSearchResults = []; // This will hold the filtered results
 
     async function search() {
         if (searchTerm != "") {
