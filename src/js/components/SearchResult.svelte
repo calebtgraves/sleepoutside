@@ -1,37 +1,12 @@
 <script>
     import ProductSummary from "./ProductSummary.svelte";
     import { searchItems } from "../stores.mjs";
-    const baseURL = import.meta.env.VITE_SERVER_URL;
-
-    function convertToJson(res) {
-        if (res.ok) {
-            return res.json();
-        } else {
-            throw new Error("Bad Response");
-        }
-    }
-
-    async function search() {
-        if ($searchItems.length == 0) {
-            let list = [];
-            const tentsResponse = await fetch(`${baseURL}products/search/tents`);
-            let tentsData = await convertToJson(tentsResponse);
-            list.push(...tentsData.Result);
-            const sleepingbagResponse = await fetch(`${baseURL}products/search/sleeping-bags`);
-            let sleepingbagData = await convertToJson(sleepingbagResponse);
-            list.push(...sleepingbagData.Result);
-            const hammockResponse = await fetch(`${baseURL}products/search/hammocks`);
-            let hammockData = await convertToJson(hammockResponse);
-            list.push(...hammockData.Result);
-            const backpacksResponse = await fetch(`${baseURL}products/search/backpacks`);
-            let backpackData = await convertToJson(backpacksResponse);
-            list.push(...backpackData.Result);
-            searchItems.set(list);
-        }
-    }
+    import { getAllItems } from "../utils.mjs"
 
     async function filterSearchResults(searchTerm) {
-        await search();
+        if ($searchItems.length == 0) {
+            await getAllItems();
+        }
         let filteredList = $searchItems.filter((item) => {
             return item.Name.toLowerCase().includes(searchTerm.toLowerCase());
         });
@@ -41,17 +16,11 @@
     let sortBy = "name"
     let sortDirection = 1
     
-    // this is how we make a prop in svelte
     export let query;
-    // if you are looking at this thinking that's strange to just stop with a promise
-    // you would be right.  This will make more sense in a bit...stay tuned.
     let result = filterSearchResults(query);
-    console.log(result)
-    console.log($searchItems)
     
     async function handleSortBy(){
         let products = await result;
-        console.log(products)
         result = products.sort((a,b)=>{
             if(sortBy == "price"){
                 return (a.FinalPrice-b.FinalPrice)*sortDirection

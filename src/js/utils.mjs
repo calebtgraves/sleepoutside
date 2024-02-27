@@ -1,6 +1,7 @@
 import MainFooter from "./components/MainFooter.svelte" ;
 import MainHeader from "./components/MainHeader.svelte" ;
-import { cartCount, cartItems, totalFinalPrice, totalRetailPrice } from "./stores.mjs";
+import { cartCount, cartItems, totalFinalPrice, totalRetailPrice, searchItems } from "./stores.mjs";
+const baseURL = import.meta.env.VITE_SERVER_URL;
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -102,4 +103,29 @@ export function removeFromCart(product,all=true) {
   localStorage.setItem("so-cart", JSON.stringify(newCart));
   cartCount.set(getCartCount());
   updateCart()
+}
+
+function convertToJson(res) {
+  if (res.ok) {
+      return res.json();
+  } else {
+      throw new Error("Bad Response");
+  }
+}
+
+export async function getAllItems() {
+  let list = [];
+      const tentsResponse = await fetch(`${baseURL}products/search/tents`);
+      let tentsData = await convertToJson(tentsResponse);
+      list.push(...tentsData.Result);
+      const sleepingbagResponse = await fetch(`${baseURL}products/search/sleeping-bags`);
+      let sleepingbagData = await convertToJson(sleepingbagResponse);
+      list.push(...sleepingbagData.Result);
+      const hammockResponse = await fetch(`${baseURL}products/search/hammocks`);
+      let hammockData = await convertToJson(hammockResponse);
+      list.push(...hammockData.Result);
+      const backpacksResponse = await fetch(`${baseURL}products/search/backpacks`);
+      let backpackData = await convertToJson(backpacksResponse);
+      list.push(...backpackData.Result);
+      searchItems.set(list);
 }
