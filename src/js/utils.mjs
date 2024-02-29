@@ -90,6 +90,11 @@ export function removeFromCart(product,all=true) {
   let newCart = []
   if(all){
     newCart = cart.filter((item) => item.Id !== product.Id);
+    setTimeout(()=>{
+      localStorage.setItem("so-cart", JSON.stringify(newCart));
+      cartCount.set(getCartCount());
+      updateCart()
+    },1000)
   }else{
     let itemRemoved = false
     cart.forEach((item)=>{
@@ -99,10 +104,10 @@ export function removeFromCart(product,all=true) {
         newCart.push(item)
       }
     })
+    localStorage.setItem("so-cart", JSON.stringify(newCart));
+    cartCount.set(getCartCount());
+    updateCart()
   }
-  localStorage.setItem("so-cart", JSON.stringify(newCart));
-  cartCount.set(getCartCount());
-  updateCart()
 }
 
 function convertToJson(res) {

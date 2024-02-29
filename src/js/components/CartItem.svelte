@@ -22,7 +22,10 @@
             <button on:click={()=>{addToCart(item)}}>╱╲</button>
             <button on:click={()=>{removeFromCart(item,false)}}>╲╱</button>
         </div>
-        <button id="remove-button" on:click={()=>{removeFromCart(item)}}>✕</button>
+        <button id="remove-button" on:click={(e)=>{
+            e.target.parentElement.parentElement.style.opacity = 0+"%";
+            removeFromCart(item)
+            }}>✕</button>
     </div>
     <p class="cart-card__price"><span class="product-card__retail-price">${(item.SuggestedRetailPrice*item.quantity).toFixed(2)}</span><br/> ${(item.FinalPrice*item.quantity).toFixed(2)}</p>
   </li>
@@ -30,6 +33,7 @@
 <style>
     li{
         width:100%;
+        transition: opacity 1s ease-in-out;
     }
     .card__name{
         padding-right:1rem;
