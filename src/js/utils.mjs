@@ -1,5 +1,6 @@
 import MainFooter from "./components/MainFooter.svelte" ;
 import MainHeader from "./components/MainHeader.svelte" ;
+import AlertMessage from "./components/AlertMessage.svelte" ;
 import { cartCount, cartItems, totalFinalPrice, totalRetailPrice, searchItems } from "./stores.mjs";
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
@@ -132,4 +133,23 @@ export async function getAllItems() {
 
 export function redirect(url) {
   window.location = url;
+}
+
+export function alertMessage(message, scroll=true, duration = 3000) {
+  const alert = new AlertMessage({
+    target: document.querySelector("body"),
+    anchor: document.querySelector("main"),
+    props: {
+      message,
+    },
+  });
+
+    // make sure they see the alert by scrolling to the top of the window
+    //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+    if (scroll) window.scrollTo(0, 0);
+
+    // left this here to show how you could remove the alert automatically after a certain amount of time.
+    setTimeout(function () {
+      alert.$destroy();
+      }, duration);
 }

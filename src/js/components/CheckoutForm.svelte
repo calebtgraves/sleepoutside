@@ -1,5 +1,5 @@
 <script>
-    import { getLocalStorage, updateCart } from "../utils.mjs";
+    import { getLocalStorage, updateCart, alertMessage, redirect } from "../utils.mjs";
     import { cartItems } from "../stores.mjs";
     import { checkout } from "../externalServices.mjs";
 
@@ -47,9 +47,9 @@
 
     async function handleSubmit(e) {
         e.preventDefault();
-        
+        try {
         // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-        let form = new FormData(this.parentElement);
+        let form = new FormData(this);
         let convertedJSON = {};
 
         convertedJSON["orderDate"] = new Date();
@@ -65,14 +65,21 @@
         // call the checkout method in our externalServices module and send it our data object.
         let data = await checkout(convertedJSON);
         console.log(data)
-    }
+        } catch(err) {
+            for (let error in err.message) {
+                alertMessage(err.message[error]);
+            }
+        }
 
-    // TODO: fix bad request when not autofilled
+        // Give success message and clear the cart
+        localStorage.removeItem("so-cart");
+        window.location = "/checkout/success.html";
+    }
 
     init();
 </script>
 
-<form action="">
+<form action="" on:submit={handleSubmit} >
     <fieldset>
         <legend>Shipping</legend>
         <label for="fname">First Name</label>
@@ -123,7 +130,7 @@
             <p>${orderTotal.toFixed(2)}</p>
         </div>
     </fieldset>
-    <button type="submit" on:click = {handleSubmit}>Place Order</button>
+    <button type="submit">Place Order</button>
 </form>
 
 <style>
