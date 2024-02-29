@@ -63,7 +63,6 @@
         console.log(convertedJSON);
 
         // call the checkout method in our externalServices module and send it our data object.
-        // checkout(convertedJSON);
         let data = await checkout(convertedJSON);
         console.log(data)
     }
@@ -77,19 +76,19 @@
     <fieldset>
         <legend>Shipping</legend>
         <label for="fname">First Name</label>
-        <input name="fname" value="Mwahahaha" required>
+        <input name="fname" value="" required>
 
         <label for="lname">Last Name</label>
-        <input name="lname" value="Mwahahaha" required>
+        <input name="lname" value="" required>
 
         <label for="street">Street</label>
-        <input name="street" value="784 Malibu" required>
+        <input name="street" value="" required>
 
         <label for="city">City</label>
-        <input name="city" value="Modesto" required>
+        <input name="city" value="" required>
 
         <label for="state">State</label>
-        <input name="state" value="California" required>
+        <input name="state" value="" required>
 
         <label for="zip">Zip</label>
         <input name="zip" required on:change = {calculateOrderTotal}>
@@ -100,7 +99,7 @@
         <input name="cardNumber" value="1234123412341234" required>
 
         <label for="expiration">Expiration</label>
-        <input name="expiration" value="07/55" required>
+        <input name="expiration" value="" required>
 
         <label for="code">Security Code</label>
         <input name="code" value="123" required>
