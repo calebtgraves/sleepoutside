@@ -31,12 +31,17 @@ export default async function productDetails(productID, selector) {
 
 function productDetailsTemplate(p) {
     let colors = p.Colors;
+    let displayColors = `<p>This product is only available in one color.</p>`;
+    if (colors.length > 1) {
+        displayColors = `<p class="color_options" id="colorOptions">${colors.map(c=>`<span class="color_option"><img src="${c.ColorPreviewImageSrc}"></span>`).join("")}</p>`
+    }
+    
     console.log(colors);
     return `<h3 id="productName">${p.Brand.Name}</h3>
         <h2 class="divider" id="productNameWithoutBrand">${p.NameWithoutBrand}</h2>
         <section id="productImages"></section>
         <p class="product-card__price" id="productFinalPrice"><span class="product-card__retail-price">${p.SuggestedRetailPrice>p.ListPrice?"$"+p.SuggestedRetailPrice.toFixed(2):""}</span> $${p.FinalPrice.toFixed(2)}</p>
         <p class="product__color" id="productColorName">${p.Colors[0].ColorName}</p>
-        <p class="color_options" id="colorOptions">${colors.map(c=>`<span class="color_option"><img src="${c.ColorPreviewImageSrc}"></span>`).join("")}</p>
+        ${displayColors}
         <p class="product__description" id="productDescriptionHtmlSimple">${p.DescriptionHtmlSimple}</p>`;
 }
