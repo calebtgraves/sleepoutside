@@ -1,7 +1,7 @@
 <script>
 import CartItem from "./CartItem.svelte";
 import { cartItems,totalFinalPrice,totalRetailPrice } from "../stores.mjs";
-import { updateCart } from "../utils.mjs";
+import { updateCart, redirect } from "../utils.mjs";
 
 updateCart()
 </script>
@@ -11,8 +11,9 @@ updateCart()
 <ul class="product-list">
 {#each $cartItems as item}
     <CartItem item={item} quantity={item.quantity}/>
-{/each}
+    {/each}
 </ul>
+<button id="checkout-button" on:click={ () => redirect("/checkout/index.html") }>Checkout</button>
 {:else}
 <p class="empty-cart-indicator">Your cart is empty</p>
 {/if}

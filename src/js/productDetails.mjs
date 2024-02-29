@@ -1,6 +1,6 @@
-import { findProductById } from "./productData.mjs";
 import ImageCarousel from "./components/ImageCarousel.svelte"
 import SuggestedProducts from "./components/SuggestedProducts.svelte"
+import { findProductById } from "./externalServices.mjs";
 import { addToCart } from "./utils.mjs";
 
 let product = {};

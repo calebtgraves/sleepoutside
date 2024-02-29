@@ -56,7 +56,7 @@ export function renderHeaderFooter() {
 export function updateCart(){
   let retailTotal = 0;
   let finalTotal = 0;
-  let items = getLocalStorage('so-cart')
+  let items = getLocalStorage("so-cart")
   if(items){
     let revisedCartItems = [];
     let cartItemTotals = {}
@@ -85,7 +85,7 @@ export function addToCart(product) {
   updateCart()
 }
 
-export function removeFromCart(product,all=true) {
+export function removeFromCart(product,all = true) {
   let cart = getLocalStorage("so-cart");
   let newCart = []
   if(all){
@@ -128,4 +128,8 @@ export async function getAllItems() {
       let backpackData = await convertToJson(backpacksResponse);
       list.push(...backpackData.Result);
       searchItems.set(list);
+}
+
+export function redirect(url) {
+  window.location = url;
 }
