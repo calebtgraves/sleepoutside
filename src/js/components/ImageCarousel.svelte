@@ -18,7 +18,7 @@
             nextImageIndex = 0;
         }
         if(nextImageIndex < 0){
-            nextImageIndex = images.length-1
+            nextImageIndex = images.length-1;
         }
         currentImageIndex = nextImageIndex;
         setImage()
