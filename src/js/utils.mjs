@@ -20,8 +20,11 @@ export function setLocalStorage(key, data) {
   let content = getLocalStorage(key);
   if (key === "so-cart") {
     content ? content.push(data) : (content = [data]);
+    localStorage.setItem(key, JSON.stringify(content));
   }
-  localStorage.setItem(key, JSON.stringify(content));
+  else if (key === "so_token") {
+    localStorage.setItem(key, data);
+  }
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
