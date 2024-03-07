@@ -52,6 +52,8 @@
         display:flex;
         width:100%;
         overflow:hidden;
+        grid-column:1/3;
+        grid-row:4/5;
     }
     .arrow-button{
         padding:10px;
