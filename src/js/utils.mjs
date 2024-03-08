@@ -13,7 +13,12 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  if (key === "so_token") {
+    return localStorage.getItem(key);
+  }
+  else {
+    return JSON.parse(localStorage.getItem(key));
+  }
 }
 // save data to local storage
 export function setLocalStorage(key, data) {

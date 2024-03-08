@@ -42,3 +42,10 @@ export async function loginRequest(creds) {
   });
   return await response.json();
 }
+
+export async function getOrders(token) {
+  const response = await fetch(baseURL + "orders", {
+    headers: { "Authorization": `Bearer ${token}` }
+  });
+  return await response.json();
+}
