@@ -33,7 +33,9 @@
             currentImageIndex = 0;
             setImage()
         }}>
-            <img class="carousel-item selected-image" src={item.Images.PrimaryLarge} alt={item.Name} bind:this={images[0]}/>
+            <img class="carousel-item selected-image" src={item.Images.PrimaryLarge} alt={item.Name} bind:this={images[0]} on:load={(e)=>{
+                images[0] = e.target;
+            }}/>
         </button>
         {#each item.Images.ExtraImages as image}
         <button class="image-button" on:click={()=>{

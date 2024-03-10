@@ -296,6 +296,11 @@ button {
   width: 100%;
   justify-content: center;
 }
+#supplemental{
+  display:flex;
+  flex-direction: column-reverse;
+  /* flex-wrap:wrap; */
+}
 
 @media screen and (min-width: 500px) {
   body {

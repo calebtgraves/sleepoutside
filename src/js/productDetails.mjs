@@ -1,5 +1,6 @@
 import ImageCarousel from "./components/ImageCarousel.svelte"
 import SuggestedProducts from "./components/SuggestedProducts.svelte"
+import CommentsList from "./components/CommentsList.svelte"
 import { findProductById } from "./externalServices.mjs";
 import { addToCart } from "./utils.mjs";
 
@@ -19,6 +20,10 @@ export default async function productDetails(productID, selector) {
         })
         // add a listener to Add to Cart button
         document.querySelector("#addToCart").addEventListener("click", ()=>{addToCart(product)});
+        new CommentsList({
+            target: document.getElementById("product-comments"),
+            props:{product: product}
+        })
     }else{
         document.getElementById("addToCart").style.display = "none";
         element.insertAdjacentHTML("afterBegin", "<h2>Sorry, we couldn't find this product!</h2>")
