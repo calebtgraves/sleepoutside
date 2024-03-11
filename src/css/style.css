@@ -116,7 +116,8 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
   color: var(--tertiary-color);
   text-decoration: none;
   cursor: pointer;
@@ -321,8 +322,8 @@ button {
   width: 100%;
   justify-content: center;
 }
-#supplemental{
-  display:flex;
+#supplemental {
+  display: flex;
   flex-direction: column-reverse;
   /* flex-wrap:wrap; */
 }
