@@ -96,6 +96,31 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+#callToAction {
+  margin: 1em auto;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+.banner-content {
+  padding: 1rem;
+  padding-top: 0.25rem;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+}
+.close {
+  color: var(--dark-grey);
+  float: right;
+  font-size: 44px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover, .close:focus {
+  color: var(--tertiary-color);
+  text-decoration: none;
+  cursor: pointer;
+}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
