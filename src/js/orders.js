@@ -6,13 +6,13 @@ import OrderList from "./components/OrdersList.svelte";
 checkLogin();
 
 async function setOrders() {
-    const orders = await getOrders(getLocalStorage('so_token'));
-    new OrderList({
-        target: document.querySelector("#orders"),
-        props: {
-            orders,
-        },
-    })
+  const orders = await getOrders(getLocalStorage("so_token"));
+  new OrderList({
+    target: document.querySelector("#orders"),
+    props: {
+      orders,
+    },
+  });
 }
 
 renderHeaderFooter();
